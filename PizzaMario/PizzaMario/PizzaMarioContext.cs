@@ -28,6 +28,11 @@ namespace PizzaMario
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<OrderLine> OrderLines { get; set; }
-        public DbSet<Coupon> Coupons { get; set; }
+        public DbSet<ProductCoupon> ProductCoupons { get; set; }
+        public DbSet<CategoryCoupon> CategoryCoupons { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+        }
     }
 }
