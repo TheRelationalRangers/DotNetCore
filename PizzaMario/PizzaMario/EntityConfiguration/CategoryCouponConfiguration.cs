@@ -3,21 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PizzaMario.Models;
 
 namespace PizzaMario.EntityConfiguration
 {
-    public class OrderConfiguration : IEntityTypeConfiguration<Order>
+    public class CategoryCouponConfiguration : IEntityTypeConfiguration<CategoryCoupon>
     {
-        public void Configure(EntityTypeBuilder<Order> builder)
+        public void Configure(EntityTypeBuilder<CategoryCoupon> builder)
         {
-            builder.Property(o => o.Tax)
+            builder.Property(cc => cc.DiscountValue)
                 .HasColumnType("decimal(5,2)");
-
-            builder.Property(o => o.TotalPrice)
-                .HasColumnType("decimal(6,2)");
         }
     }
 }

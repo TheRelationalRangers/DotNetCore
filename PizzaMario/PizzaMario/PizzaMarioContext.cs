@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PizzaMario.EntityConfiguration;
 using PizzaMario.Models;
 
 namespace PizzaMario
@@ -33,6 +34,11 @@ namespace PizzaMario
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new OrderConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderLineConfiguration());
+            modelBuilder.ApplyConfiguration(new PricingConfiguration());
+            modelBuilder.ApplyConfiguration(new CategoryCouponConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductCouponConfiguration());
         }
     }
 }

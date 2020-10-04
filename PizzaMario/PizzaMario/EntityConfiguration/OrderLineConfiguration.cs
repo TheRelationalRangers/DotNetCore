@@ -3,20 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PizzaMario.Models;
 
 namespace PizzaMario.EntityConfiguration
 {
-    public class OrderConfiguration : IEntityTypeConfiguration<Order>
+    public class OrderLineConfiguration : IEntityTypeConfiguration<OrderLine>
     {
-        public void Configure(EntityTypeBuilder<Order> builder)
+        public void Configure(EntityTypeBuilder<OrderLine> builder)
         {
-            builder.Property(o => o.Tax)
-                .HasColumnType("decimal(5,2)");
-
-            builder.Property(o => o.TotalPrice)
+            builder.Property(ol => ol.TotalPrice)
                 .HasColumnType("decimal(6,2)");
         }
     }
