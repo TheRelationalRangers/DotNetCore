@@ -9,10 +9,10 @@ namespace PizzaMario.Models
         public string CountryCode { get; set; }
 
         public Address Address { get; set; }
-        public int AddressId { get; set; }
+        public string AddressId { get; set; }
 
         public virtual DeliveryRange DeliveryRange { get; set; }
-        public int DeliveryRangeId { get; set; }
+        public string DeliveryRangeId { get; set; }
 
         public ICollection<OpeningHour> OpeningHours { get; set; }
 

@@ -10,7 +10,7 @@ namespace PizzaMario.Models
         public DateTime ClosingTime { get; set; }
         public bool IsClosed { get; set; }
 
-        public int StoreId { get; set; }
+        public string StoreId { get; set; }
         public virtual Store Store { get; set; }
     }
 }

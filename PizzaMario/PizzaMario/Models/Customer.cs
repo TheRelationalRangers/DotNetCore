@@ -24,19 +24,17 @@ namespace PizzaMario.Models
         }
 
         public virtual Address Address { get; set; }
-        public int AddressId { get; set; }
+        public string AddressId { get; set; }
 
         public ICollection<Order> Orders { get; set; }
 
         public static string GetPasswordHash(string password)
         {
-            using (var sha1 = new SHA1Managed())
-            {
-                var hash = Encoding.UTF8.GetBytes(password);
-                var generatedHash = sha1.ComputeHash(hash);
-                var generatedHashString = Convert.ToBase64String(generatedHash);
-                return generatedHashString;
-            }
+            using var sha1 = new SHA1Managed();
+            var hash = Encoding.UTF8.GetBytes(password);
+            var generatedHash = sha1.ComputeHash(hash);
+            var generatedHashString = Convert.ToBase64String(generatedHash);
+            return generatedHashString;
         }
     }
 }

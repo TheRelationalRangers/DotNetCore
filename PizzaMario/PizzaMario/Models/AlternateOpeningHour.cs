@@ -11,7 +11,7 @@ namespace PizzaMario.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
-        public int StoreId { get; set; }
+        public string StoreId { get; set; }
         public virtual Store Store { get; set; }
     }
 }

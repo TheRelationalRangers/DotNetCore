@@ -14,7 +14,7 @@ namespace PizzaMario.Models
         public int SeriesIndicationEnd { get; set; }
 
         public Township Township { get; set; }
-        public int TownshipId { get; set; }
+        public string TownshipId { get; set; }
 
         public ICollection<Customer> Customers { get; set; }
     }
