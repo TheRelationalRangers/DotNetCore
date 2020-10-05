@@ -9,7 +9,8 @@ namespace PizzaMario.Models
         public virtual Customer Customer { get; set; }
         public virtual Status Status { get; set; }
         public virtual PaymentType PaymentType { get; set; }
-        public virtual Coupon Coupon { get; set; }
+        public virtual ProductCoupon ProductCoupon { get; set; }
+        public virtual CategoryCoupon CategoryCoupon { get; set; }
 
         public ICollection<OrderLine> OrderLines { get; set; }
 
