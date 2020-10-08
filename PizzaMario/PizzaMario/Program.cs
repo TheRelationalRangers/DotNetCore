@@ -1,11 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Globalization;
+using System.IO;
+using CsvHelper;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using PizzaMario.ImportCsv;
 
 namespace PizzaMario
 {
@@ -13,6 +12,17 @@ namespace PizzaMario
     {
         public static void Main(string[] args)
         {
+            using (var reader = new StreamReader(@"C:\TestFiles\ExtraIngredienten1.csv"))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                csv.Configuration.Delimiter = ";";
+                var records = csv.GetRecords<ExtraIngredients>();
+                foreach (var record in records)
+                {
+                    Console.WriteLine($"Ingredient {record.Ingredient}, Price {record.ExtraPrice}");
+                }
+            }
+
             CreateHostBuilder(args).Build().Run();
         }
 
