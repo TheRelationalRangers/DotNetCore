@@ -31,6 +31,7 @@ namespace PizzaMario
         public DbSet<OrderLine> OrderLines { get; set; }
         public DbSet<ProductCoupon> ProductCoupons { get; set; }
         public DbSet<CategoryCoupon> CategoryCoupons { get; set; }
+        public DbSet<ExtraIngredient> ExtraIngredients { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

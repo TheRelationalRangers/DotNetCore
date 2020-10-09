@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PizzaMario.Models
 {
-    public class Entity
+    public abstract class Entity
     {
         [Key]
         [ScaffoldColumn(true)]
