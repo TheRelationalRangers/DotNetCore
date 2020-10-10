@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using PizzaMario.ImportCsv.Importer;
+using PizzaMario.ImportCsv.Mappers;
 using PizzaMario.ImportCsv.Services;
 using PizzaMario.ImportCsv.Settings;
 
@@ -22,10 +23,15 @@ namespace PizzaMario
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContextPool<PizzaMarioContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PizzaMarioConnection")));
-            services.AddControllers();
             services.AddScoped<IExtraIngredientImporter, ExtraIngredientImporter>();
+            services.AddScoped<IExtraIngredientMapper, ExtraIngredientMapper>();
+
+            services.AddControllers();
+
+            services.AddDbContextPool<PizzaMarioContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PizzaMarioConnection")));
+
             services.AddSingleton(_ => CreateImportSettings());
+
             services.AddHostedService<ImportService>();
         }
 

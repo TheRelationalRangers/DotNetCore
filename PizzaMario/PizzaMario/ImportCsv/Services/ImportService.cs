@@ -21,15 +21,15 @@ namespace PizzaMario.ImportCsv.Services
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            var settings = _settings.ImportFolder;
             var path = @"C:\TestFiles\ExtraIngredienten1.csv";
             // loopen door folder voor juist bestandnaam
             // in loop scope aanmaken
             using (var scope = _provider.CreateScope())
             {
-                var importer = scope.ServiceProvider.GetService<ExtraIngredientImporter>();
+                var importer = scope.ServiceProvider.GetService<IExtraIngredientImporter>();
                 importer.Import(path);
             }
-
             // basis bestandsnaam importer kiezen
             // importer aanmaken binnen de scope
 

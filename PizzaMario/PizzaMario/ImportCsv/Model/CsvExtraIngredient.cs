@@ -2,7 +2,7 @@
 
 namespace PizzaMario.ImportCsv.Model
 {
-    public abstract class CsvExtraIngredient
+    public class CsvExtraIngredient
     {
         public IEnumerable<CsvExtraIngredient> Ingredients { get; private set; }
 

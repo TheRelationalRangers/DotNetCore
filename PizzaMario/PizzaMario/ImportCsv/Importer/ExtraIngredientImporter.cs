@@ -3,6 +3,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using CsvHelper;
+using Microsoft.EntityFrameworkCore;
 using PizzaMario.ImportCsv.Mappers;
 using PizzaMario.ImportCsv.Model;
 
@@ -13,7 +14,7 @@ namespace PizzaMario.ImportCsv.Importer
         void Import(string filePath);
     }
 
-    public class ExtraIngredientImporter : IExtraIngredientImporter// make inteervace for get service!
+    public class ExtraIngredientImporter : IExtraIngredientImporter
     {
         private readonly IExtraIngredientMapper _mapper;
         private readonly PizzaMarioContext _context;
