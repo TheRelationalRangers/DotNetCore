@@ -1,17 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Security.AccessControl;
 using System.Text.RegularExpressions;
 using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
 
-namespace PizzaMario.ImportCsv
+namespace PizzaMario.ImportCsv.Model
 {
-    public class OrderData
+    public class CsvOrderData
     {
-        public IEnumerable<OrderData> Orders { get; set; } = new List<OrderData>();
+        public IEnumerable<CsvOrderData> Orders { get; set; } = new List<CsvOrderData>();
 
         public string Winkelnaam { get; set; }
         public string Klantnaam { get; set; }
@@ -48,9 +47,9 @@ namespace PizzaMario.ImportCsv
         public string TeBetalen { get; set; }
     }
 
-    public sealed class OrderDataMapper : ClassMap<OrderData>
+    public sealed class OrderDataHeaderMapper : ClassMap<CsvOrderData>
     {
-        public OrderDataMapper()
+        public OrderDataHeaderMapper()
         {
             Map(m => m.ExtraIngrediënten).Name("Extra Ingrediënten");
             Map(m => m.PrijsExtraIngrediënten).Name("Prijs Extra Ingrediënten");
@@ -64,15 +63,15 @@ namespace PizzaMario.ImportCsv
     {
         public void GetOrderData()
         {
-            var orderData = new OrderData();
+            var orderData = new CsvOrderData();
 
             using var reader = new StreamReader(@"C:\TestFiles\MarioOrderData01_10000.csv");
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
 
             csv.Configuration.Delimiter = ";";
             csv.Configuration.PrepareHeaderForMatch = (header, index) => Regex.Replace(header, @"\s", string.Empty);
-            csv.Configuration.RegisterClassMap<OrderDataMapper>();
-            orderData.Orders = csv.GetRecords<OrderData>();
+            csv.Configuration.RegisterClassMap<OrderDataHeaderMapper>();
+            orderData.Orders = csv.GetRecords<CsvOrderData>();
         }
     }
 }

@@ -39,6 +39,7 @@ namespace PizzaMario.ImportCsv.Importer
         {
             using var reader = new StreamReader(filePath);
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            csv.Configuration.RegisterClassMap<ExtraIngredientHeaderMapper>();
             csv.Configuration.Delimiter = ";";
             return csv.GetRecords<CsvExtraIngredient>().ToList();
         }
