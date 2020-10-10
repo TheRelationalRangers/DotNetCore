@@ -9,6 +9,8 @@
     <Compile Remove="Migrations\20201004104828_InitialModel.Designer.cs" />
     <Compile Remove="Migrations\20201004140018_InitialModel.cs" />
     <Compile Remove="Migrations\20201004140018_InitialModel.Designer.cs" />
+    <Compile Remove="Migrations\20201010155230_RenameOrderData-UserCouponToUsedCoupon.cs" />
+    <Compile Remove="Migrations\20201010155230_RenameOrderData-UserCouponToUsedCoupon.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PizzaMario;
 
 namespace PizzaMario.Migrations
 {
     [DbContext(typeof(PizzaMarioContext))]
-    partial class PizzaMarioContextModelSnapshot : ModelSnapshot
+    [Migration("20201010153756_AddOrderDataShadowTable")]
+    partial class AddOrderDataShadowTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -25,6 +25,8 @@ namespace PizzaMario
         {
             services.AddScoped<IExtraIngredientImporter, ExtraIngredientImporter>();
             services.AddScoped<IExtraIngredientMapper, ExtraIngredientMapper>();
+            services.AddScoped<IOrderDataImporter, OrderDataImporter>();
+            services.AddScoped<IOrderDataMapper, OrderDataMapper>();
 
             services.AddControllers();
 

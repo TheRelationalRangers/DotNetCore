@@ -34,7 +34,9 @@ namespace PizzaMario.ImportCsv.Services
                 }
                 else if (csvFile.Contains(orderData))
                 {
-                    // order data import
+                    using var scope = _provider.CreateScope();
+                    var importer = scope.ServiceProvider.GetService<IOrderDataImporter>();
+                    importer.Import(csvFile);
                 }
                 else
                 {

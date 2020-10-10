@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using CsvHelper;
-using Microsoft.EntityFrameworkCore;
 using PizzaMario.ImportCsv.Mappers;
 using PizzaMario.ImportCsv.Models;
 
@@ -30,8 +30,9 @@ namespace PizzaMario.ImportCsv.Importers
             var ingredients = GetIngredients(filePath);
             foreach (var ingredient in ingredients)
             {
-                _context.ExtraIngredients.Add(_mapper.Map(ingredient)); //mapped data
+                _context.ExtraIngredients.Add(_mapper.Map(ingredient));
                 _context.SaveChanges();
+                Console.WriteLine($"Ingredient {ingredient.Ingredient} Added");
             }
         }
 
