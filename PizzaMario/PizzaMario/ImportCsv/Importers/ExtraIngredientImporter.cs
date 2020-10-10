@@ -5,9 +5,9 @@ using System.Linq;
 using CsvHelper;
 using Microsoft.EntityFrameworkCore;
 using PizzaMario.ImportCsv.Mappers;
-using PizzaMario.ImportCsv.Model;
+using PizzaMario.ImportCsv.Models;
 
-namespace PizzaMario.ImportCsv.Importer
+namespace PizzaMario.ImportCsv.Importers
 {
     public interface IExtraIngredientImporter
     {

@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using PizzaMario.ImportCsv.Importer;
+using PizzaMario.ImportCsv.Importers;
 using PizzaMario.ImportCsv.Mappers;
 using PizzaMario.ImportCsv.Services;
 using PizzaMario.ImportCsv.Settings;

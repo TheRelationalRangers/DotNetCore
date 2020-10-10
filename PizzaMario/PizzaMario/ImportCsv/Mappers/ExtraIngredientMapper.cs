@@ -1,4 +1,4 @@
-﻿using PizzaMario.ImportCsv.Model;
+﻿using PizzaMario.ImportCsv.Models;
 using PizzaMario.Models;
 
 namespace PizzaMario.ImportCsv.Mappers

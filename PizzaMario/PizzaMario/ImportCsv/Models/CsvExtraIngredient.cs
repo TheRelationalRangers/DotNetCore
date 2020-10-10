@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using CsvHelper.Configuration;
+﻿using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
 
-namespace PizzaMario.ImportCsv.Model
+namespace PizzaMario.ImportCsv.Models
 {
     public class CsvExtraIngredient
     {

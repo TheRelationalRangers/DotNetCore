@@ -6,7 +6,7 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
 
-namespace PizzaMario.ImportCsv.Model
+namespace PizzaMario.ImportCsv.Models
 {
     public class CsvOrderData
     {
