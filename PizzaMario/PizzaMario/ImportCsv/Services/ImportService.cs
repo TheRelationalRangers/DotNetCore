@@ -21,20 +21,26 @@ namespace PizzaMario.ImportCsv.Services
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            var settings = _settings.ImportFolder;
-            var path = @"C:\TestFiles\ExtraIngredienten1.csv";
-            // loopen door folder voor juist bestandnaam
-            // in loop scope aanmaken
-            using (var scope = _provider.CreateScope())
+            const string extraIngredients = "ExtraIngredienten";
+            const string orderData = "MarioOrderData";
+            var csvFiles = System.IO.Directory.GetFiles(_settings.ImportFolder, "*.csv");
+            foreach (var csvFile in csvFiles)
             {
-                var importer = scope.ServiceProvider.GetService<IExtraIngredientImporter>();
-                importer.Import(path);
+                if (csvFile.Contains(extraIngredients))
+                {
+                    using var scope = _provider.CreateScope();
+                    var importer = scope.ServiceProvider.GetService<IExtraIngredientImporter>();
+                    importer.Import(csvFile);
+                }
+                else if (csvFile.Contains(orderData))
+                {
+                    // order data import
+                }
+                else
+                {
+                    Console.WriteLine($"ScvFile {csvFile} could not be imported");
+                }
             }
-            // basis bestandsnaam importer kiezen
-            // importer aanmaken binnen de scope
-
-            // bestand afgeven -> importeren
-
             return Task.CompletedTask;
         }
     }
