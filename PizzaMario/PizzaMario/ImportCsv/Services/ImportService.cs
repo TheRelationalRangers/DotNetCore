@@ -43,6 +43,15 @@ namespace PizzaMario.ImportCsv.Services
                     Console.WriteLine($"ScvFile {csvFile} could not be imported");
                 }
             }
+
+            var txtFiles = System.IO.Directory.GetFiles(_settings.ImportFolder, "*.txt");
+            foreach (var txtFile in txtFiles)
+            {
+                using var scope = _provider.CreateScope();
+                var importer = scope.ServiceProvider.GetService<IImporter>();
+                importer.Import(txtFile);
+            }
+
             return Task.CompletedTask;
         }
     }
