@@ -1,21 +1,15 @@
-﻿using System;
+﻿using CsvHelper;
+using PizzaMario.ImportCsv.Mappers;
+using PizzaMario.ImportCsv.Models;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
-using CsvHelper;
-using PizzaMario.ImportCsv.Mappers;
-using PizzaMario.ImportCsv.Models;
 
 namespace PizzaMario.ImportCsv.Importers
 {
-    public interface IOrderDataImporter
-    {
-        void Import(string filePath);
-    }
-
-    public class OrderDataImporter : IOrderDataImporter
+    public class OrderDataImporter : IImporter
     {
         private readonly IOrderDataMapper _mapper;
         private readonly PizzaMarioContext _context;
@@ -41,9 +35,9 @@ namespace PizzaMario.ImportCsv.Importers
         {
             using var reader = new StreamReader(filePath);
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-            csv.Configuration.ShouldSkipRecord = row => row[0].StartsWith("Mario bestllingen") ||
-                                                        row[0].StartsWith("Let op!") ||
-                                                        row.All(string.IsNullOrEmpty);
+
+            csv.Configuration.HeaderValidated = null;
+            csv.Configuration.ShouldSkipRecord = row => row[0].StartsWith("Mario bestllingen") || row[0].StartsWith("Let op!");
             csv.Configuration.RegisterClassMap<OrderDataHeaderMapper>();
             csv.Configuration.Delimiter = ";";
             return csv.GetRecords<CsvOrderData>().ToList();

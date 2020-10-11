@@ -9,12 +9,7 @@ using PizzaMario.ImportCsv.Models;
 
 namespace PizzaMario.ImportCsv.Importers
 {
-    public interface IExtraIngredientImporter
-    {
-        void Import(string filePath);
-    }
-
-    public class ExtraIngredientImporter : IExtraIngredientImporter
+    public class ExtraIngredientImporter : IImporter
     {
         private readonly IExtraIngredientMapper _mapper;
         private readonly PizzaMarioContext _context;

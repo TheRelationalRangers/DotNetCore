@@ -29,13 +29,13 @@ namespace PizzaMario.ImportCsv.Services
                 if (csvFile.Contains(extraIngredients))
                 {
                     using var scope = _provider.CreateScope();
-                    var importer = scope.ServiceProvider.GetService<IExtraIngredientImporter>();
+                    var importer = scope.ServiceProvider.GetService<IImporter>();
                     importer.Import(csvFile);
                 }
                 else if (csvFile.Contains(orderData))
                 {
                     using var scope = _provider.CreateScope();
-                    var importer = scope.ServiceProvider.GetService<IOrderDataImporter>();
+                    var importer = scope.ServiceProvider.GetService<IImporter>();
                     importer.Import(csvFile);
                 }
                 else
