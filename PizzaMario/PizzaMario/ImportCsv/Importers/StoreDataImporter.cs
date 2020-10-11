@@ -5,7 +5,12 @@ using PizzaMario.ImportCsv.Mappers;
 
 namespace PizzaMario.ImportCsv.Importers
 {
-    public class StoreDataImporter : IImporter
+    public interface IStoreDataImporter
+    {
+        void Import(string filePath);
+    }
+
+    public class StoreDataImporter : IStoreDataImporter
     {
         private readonly IStoreDataMapper _mapper;
         private readonly PizzaMarioContext _context;

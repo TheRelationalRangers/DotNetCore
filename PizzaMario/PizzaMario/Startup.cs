@@ -23,11 +23,11 @@ namespace PizzaMario
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IImporter, ExtraIngredientImporter>();
+            services.AddScoped<IExtraIngredientImporter, ExtraIngredientImporter>();
             services.AddScoped<IExtraIngredientMapper, ExtraIngredientMapper>();
-            services.AddScoped<IImporter, OrderDataImporter>();
+            services.AddScoped<IOrderDataImporter, OrderDataImporter>();
             services.AddScoped<IOrderDataMapper, OrderDataMapper>();
-            services.AddScoped<IImporter, StoreDataImporter>();
+            services.AddScoped<IStoreDataImporter, StoreDataImporter>();
             services.AddScoped<IStoreDataMapper, StoreDataMapper>();
 
             services.AddControllers();

@@ -21,7 +21,7 @@ namespace PizzaMario.ImportCsv.Services
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            const string extraIngredients = "ExtraIngredienten";
+            const string extraIngredients = "Extra Ingredienten";
             const string orderData = "MarioOrderData";
             var csvFiles = System.IO.Directory.GetFiles(_settings.ImportFolder, "*.csv");
             foreach (var csvFile in csvFiles)
@@ -29,13 +29,13 @@ namespace PizzaMario.ImportCsv.Services
                 if (csvFile.Contains(extraIngredients))
                 {
                     using var scope = _provider.CreateScope();
-                    var importer = scope.ServiceProvider.GetService<IImporter>();
+                    var importer = scope.ServiceProvider.GetService<IExtraIngredientImporter>();
                     importer.Import(csvFile);
                 }
                 else if (csvFile.Contains(orderData))
                 {
                     using var scope = _provider.CreateScope();
-                    var importer = scope.ServiceProvider.GetService<IImporter>();
+                    var importer = scope.ServiceProvider.GetService<IOrderDataImporter>();
                     importer.Import(csvFile);
                 }
                 else
@@ -48,8 +48,12 @@ namespace PizzaMario.ImportCsv.Services
             foreach (var txtFile in txtFiles)
             {
                 using var scope = _provider.CreateScope();
-                var importer = scope.ServiceProvider.GetService<IImporter>();
+                var importer = scope.ServiceProvider.GetService<IStoreDataImporter>();
                 importer.Import(txtFile);
+                if (txtFile == null)
+                {
+                    Console.WriteLine("No Text files found");
+                }
             }
 
             return Task.CompletedTask;

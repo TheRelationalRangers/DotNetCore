@@ -1,15 +1,20 @@
-﻿using System;
+﻿using CsvHelper;
+using PizzaMario.ImportCsv.Mappers;
+using PizzaMario.ImportCsv.Models;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using CsvHelper;
-using PizzaMario.ImportCsv.Mappers;
-using PizzaMario.ImportCsv.Models;
 
 namespace PizzaMario.ImportCsv.Importers
 {
-    public class ExtraIngredientImporter : IImporter
+    public interface IExtraIngredientImporter
+    {
+        void Import(string filePath);
+    }
+
+    public class ExtraIngredientImporter : IExtraIngredientImporter
     {
         private readonly IExtraIngredientMapper _mapper;
         private readonly PizzaMarioContext _context;
@@ -25,7 +30,7 @@ namespace PizzaMario.ImportCsv.Importers
             var ingredients = GetIngredients(filePath);
             foreach (var ingredient in ingredients)
             {
-                _context.ExtraIngredients.Add(_mapper.Map(ingredient));
+                _context.ExtraIngredientsData.Add(_mapper.Map(ingredient));
                 _context.SaveChanges();
                 Console.WriteLine($"Ingredient {ingredient.Ingredient} Added");
             }

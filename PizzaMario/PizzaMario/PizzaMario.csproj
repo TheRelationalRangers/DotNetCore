@@ -11,6 +11,8 @@
     <Compile Remove="Migrations\20201004140018_InitialModel.Designer.cs" />
     <Compile Remove="Migrations\20201010155230_RenameOrderData-UserCouponToUsedCoupon.cs" />
     <Compile Remove="Migrations\20201010155230_RenameOrderData-UserCouponToUsedCoupon.Designer.cs" />
+    <Compile Remove="Migrations\20201011142908_AddExtraIngredientsTable.cs" />
+    <Compile Remove="Migrations\20201011142908_AddExtraIngredientsTable.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

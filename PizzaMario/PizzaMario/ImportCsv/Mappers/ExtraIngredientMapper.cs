@@ -5,14 +5,14 @@ namespace PizzaMario.ImportCsv.Mappers
 {
     public interface IExtraIngredientMapper
     {
-        ExtraIngredient Map(CsvExtraIngredient ingredient);
+        ExtraIngredientData Map(CsvExtraIngredient ingredient);
     }
 
     public class ExtraIngredientMapper : IExtraIngredientMapper
     {
-        public ExtraIngredient Map(CsvExtraIngredient ingredient)
+        public ExtraIngredientData Map(CsvExtraIngredient ingredient)
         {
-            return new ExtraIngredient
+            return new ExtraIngredientData
             {
                 Ingredient = ingredient.Ingredient,
                 ExtraPrice = ingredient.ExtraPrice

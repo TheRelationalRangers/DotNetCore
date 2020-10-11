@@ -9,7 +9,12 @@ using System.Linq;
 
 namespace PizzaMario.ImportCsv.Importers
 {
-    public class OrderDataImporter : IImporter
+    public interface IOrderDataImporter
+    {
+        void Import(string filePath);
+    }
+
+    public class OrderDataImporter : IOrderDataImporter
     {
         private readonly IOrderDataMapper _mapper;
         private readonly PizzaMarioContext _context;

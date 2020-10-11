@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PizzaMario;
 
 namespace PizzaMario.Migrations
 {
     [DbContext(typeof(PizzaMarioContext))]
-    partial class PizzaMarioContextModelSnapshot : ModelSnapshot
+    [Migration("20201011142218_RenameExtraIngredient")]
+    partial class RenameExtraIngredient
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -235,23 +237,6 @@ namespace PizzaMario.Migrations
                     b.ToTable("DeliveryRanges");
                 });
 
-            modelBuilder.Entity("PizzaMario.Models.ExtraIngredient", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<decimal>("ExtraPrice")
-                        .HasColumnType("decimal(5,2)");
-
-                    b.Property<string>("Ingredient")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ExtraIngredients");
-                });
-
             modelBuilder.Entity("PizzaMario.Models.ExtraIngredientData", b =>
                 {
                     b.Property<string>("Id")
@@ -266,7 +251,7 @@ namespace PizzaMario.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ExtraIngredientsData");
+                    b.ToTable("ExtraIngredients");
                 });
 
             modelBuilder.Entity("PizzaMario.Models.Ingredient", b =>
