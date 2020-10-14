@@ -2,10 +2,12 @@
 using PizzaMario.ImportCsv.Mappers;
 using PizzaMario.ImportCsv.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace PizzaMario.ImportCsv.Importers
 {
@@ -34,6 +36,8 @@ namespace PizzaMario.ImportCsv.Importers
                 _context.SaveChanges();
                 Console.WriteLine($"Ingredient {ingredient.Ingredient} Added");
             }
+
+            _context.Database.ExecuteSqlRaw("EXEC dbo.ValidateExtraIngredients");
         }
 
         private static IEnumerable<CsvExtraIngredient> GetIngredients(string filePath)
