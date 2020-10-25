@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PizzaMario;
 
 namespace PizzaMario.Migrations
 {
     [DbContext(typeof(PizzaMarioContext))]
-    partial class PizzaMarioContextModelSnapshot : ModelSnapshot
+    [Migration("20201018124218_AddedProductRelations")]
+    partial class AddedProductRelations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,12 +159,6 @@ namespace PizzaMario.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Availability")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Diameter")
                         .HasColumnType("int");
@@ -561,12 +557,7 @@ namespace PizzaMario.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PricingId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PricingId");
 
                     b.ToTable("Sauces");
                 });
@@ -751,7 +742,7 @@ namespace PizzaMario.Migrations
                         .WithMany()
                         .HasForeignKey("CrustId");
 
-                    b.HasOne("PizzaMario.Models.OrderLine", null)
+                    b.HasOne("PizzaMario.Models.OrderLine", "OrderLine")
                         .WithMany("Products")
                         .HasForeignKey("OrderLineId");
 
@@ -784,13 +775,6 @@ namespace PizzaMario.Migrations
                     b.HasOne("PizzaMario.Models.Product", "Product")
                         .WithMany("ProductIngredients")
                         .HasForeignKey("ProductId");
-                });
-
-            modelBuilder.Entity("PizzaMario.Models.Sauce", b =>
-                {
-                    b.HasOne("PizzaMario.Models.Pricing", "Pricing")
-                        .WithMany()
-                        .HasForeignKey("PricingId");
                 });
 
             modelBuilder.Entity("PizzaMario.Models.Store", b =>

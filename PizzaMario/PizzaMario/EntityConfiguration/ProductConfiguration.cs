@@ -20,6 +20,17 @@ namespace PizzaMario.EntityConfiguration
                 .HasColumnType("nvarchar(max)")
                 .IsRequired();
 
+            builder.HasMany(p => p.ProductIngredients)
+                .WithOne(p => p.Product);
+
+            builder.HasOne(p => p.Pricing);
+
+            builder.HasOne(p => p.Category);
+
+            builder.HasOne(p => p.SubCategory);
+
+            builder.HasOne(p => p.Crust);
+
             builder.Property(p => p.IsAvailable)
                 .IsRequired();
         }
